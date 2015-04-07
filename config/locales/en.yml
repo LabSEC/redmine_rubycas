@@ -17,3 +17,6 @@ en:
   validate_url: "CAS Validate URL (optional)"
   username_session_key: "CAS Username Session Key"
   extra_attributes_session_key: "CAS Extra Attributes Session Key"
+  user_email_host: "user email host"
+  first_name: "first_name"
+  last_name: "last_name"

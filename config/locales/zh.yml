@@ -5,7 +5,7 @@ zh:
   enabled: "开启"
   maintain_standard_login: "保留标准登入"
   auto_create_users: "自动创建用户"
-  auto_update_users: "自动更新用"
+  auto_update_users: "自动更新用户信息"
   auto_user_attributes_map: "用户字段Map"
   auto_user_attributes_map_description: "需要遵循以下字符串规则:"
   auto_user_attributes_map_description2: "至少包含<code>名</code>, <code>姓</code>, <code>邮件</code>"
@@ -17,3 +17,6 @@ zh:
   validate_url: "CAS验证地址(可选)"
   username_session_key: "CAS Session用户名关键字"
   extra_attributes_session_key: "CAS Session用户信息关键字"
+  user_email_host: 邮件后缀(可选)
+  first_name: 名字
+  last_name: 姓氏

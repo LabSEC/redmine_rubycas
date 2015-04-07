@@ -11,19 +11,30 @@ module AccountControllerPatch
     def login_with_cas
       if params[:username].blank? && params[:password].blank? && RedmineRubyCas.enabled?
         if session[:user_id].blank? && CASClient::Frameworks::Rails::Filter.filter(self)
-          user = User.find_or_initialize_by_login(session[:"#{RedmineRubyCas.setting("username_session_key")}"])
+          login_name=session[:"#{RedmineRubyCas.setting("username_session_key")}"]
+          user = User.find_by_login(login_name)
+          if user.nil?
+            user = User.new do |u|
+              u.login = login_name
+              u.mail = login_name+RedmineRubyCas.setting("user_email_host")
+              u.firstname = t('first_name')
+              u.lastname = t('last_name')
+              u.admin = false
+              u.language = Setting.default_language
+              u.random_password
+            end
+          end
           if user.new_record?
             if RedmineRubyCas.setting("auto_create_users") == "true"
               user.attributes = RedmineRubyCas.user_extra_attributes_from_session(session)
               user.status = User::STATUS_REGISTERED
-
               register_automatically(user) do
                 onthefly_creation_failed(user)
               end
             else
               render_error(
-                :message => l(:cas_user_not_found, :user => session[:"#{RedmineRubyCas.setting("username_session_key")}"]),
-                :status => 401
+                  :message => l(:cas_user_not_found, :user => session[:"#{RedmineRubyCas.setting("username_session_key")}"]),
+                  :status => 401
               )
             end
           else
@@ -34,8 +45,8 @@ module AccountControllerPatch
               successful_authentication(user)
             else
               render_error(
-                :message => l(:cas_user_not_found, :user => session[:"#{RedmineRubyCas.setting("username_session_key")}"]),
-                :status => 401
+                  :message => l(:cas_user_not_found, :user => session[:"#{RedmineRubyCas.setting("username_session_key")}"]),
+                  :status => 401
               )
             end
           end

@@ -3,12 +3,11 @@ require 'account_controller_patch'
 require 'setting_model_patch'
 
 Redmine::Plugin.register :redmine_rubycas do
-  name 'Redmine RubyCAS plugin'
-  author 'Brandon Aaron'
-  description 'This is a plugin for Redmine 2+ that integrates the RubyCAS client.'
-  version '0.0.6'
-  url 'https://github.com/brandonaaron/redmine_rubycas'
-  author_url 'http://brandonaaron.net/'
+  name 'Redmine CAS Plugin'
+  author 'Brandon Aaron, BinZH'
+  description 'This is a plugin for Redmine that integrates the RubyCAS client. Forked from brandonaaron/redmine_rubycas. Works on rails4.'
+  version '0.0.7'
+  url 'https://github.com/binzh/redmine_rubycas.git'
 
   requires_redmine :version_or_higher => '2.2.2'
 

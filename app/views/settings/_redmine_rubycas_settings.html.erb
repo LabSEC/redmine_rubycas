@@ -66,4 +66,8 @@ end %>
         <label for="settings_extra_attributes_session_key"><%= l(:extra_attributes_session_key) %></label>
         <%= text_field_tag 'settings[extra_attributes_session_key]', get_setting_val('extra_attributes_session_key') %>
     </p>
+  <p>
+    <label for="settings_user_email_host"><%= l(:user_email_host) %></label>
+    <%= text_field_tag 'settings[user_email_host]', get_setting_val('user_email_host') %>
+  </p>
 </fieldset>
