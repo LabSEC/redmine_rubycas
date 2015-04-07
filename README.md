@@ -1,6 +1,6 @@
 # Redmine RubyCAS
 
-A Plugin for Redmine 2 that utilizes the RubyCAS Client for CAS authentication.
+A Plugin for Redmine that utilizes the RubyCAS Client for CAS authentication.
 
 ## Install
 
