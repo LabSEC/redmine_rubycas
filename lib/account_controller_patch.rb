@@ -11,8 +11,9 @@ module AccountControllerPatch
     def login_with_cas
       if params[:username].blank? && params[:password].blank? && RedmineRubyCas.enabled?
         if session[:user_id].blank? && CASClient::Frameworks::Rails::Filter.filter(self)
-          login_name=session[:"#{RedmineRubyCas.setting("username_session_key")}"]
-          user = User.find_by_login(login_name)
+          attributes = RedmineRubyCas.user_extra_attributes_from_session session
+          login_name = attributes['login']
+          user = User.find_by_login login_name
           if user.nil?
             user = User.new do |u|
               u.login = login_name
